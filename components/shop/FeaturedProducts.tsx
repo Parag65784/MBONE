@@ -1,0 +1,163 @@
+'use client';
+
+import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
+import { ArrowRight, ShoppingCart, Star } from 'lucide-react';
+import Link from 'next/link';
+import { supabase } from '@/lib/supabase';
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image_url: string;
+  stock_quantity: number;
+}
+
+export default function FeaturedProducts() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchFeaturedProducts();
+  }, []);
+
+  const fetchFeaturedProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('is_featured', true)
+        .eq('is_active', true)
+        .limit(4);
+
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error('Error fetching featured products:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-brand-primary mb-4">
+              FEATURED PRODUCTS
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[...Array(4)].map((_, index) => (
+                <div key={index} className="bg-gray-200 rounded-2xl h-96 animate-pulse"></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-black text-brand-primary mb-4">
+            FEATURED PRODUCTS
+          </h2>
+          <p className="text-xl text-brand-secondary max-w-2xl mx-auto">
+            Our most popular items - handpicked for true diamond hands
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+          {products.map((product, index) => (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group cursor-pointer"
+            >
+              <div className="bg-white rounded-2xl overflow-hidden shadow-lg border hover-lift group-hover:border-brand-accent transition-all duration-300">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={product.image_url}
+                    alt={product.name}
+                    className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <div className="bg-brand-accent text-white px-3 py-1 rounded-full text-sm font-bold flex items-center space-x-1">
+                      <Star className="h-3 w-3" />
+                      <span>Featured</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="text-brand-primary font-bold text-lg mb-2 group-hover:text-brand-accent transition-colors">
+                    {product.name}
+                  </h3>
+                  
+                  <p className="text-brand-secondary text-sm mb-4 line-clamp-2">
+                    {product.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-2xl font-black text-brand-accent">
+                      ${product.price}
+                    </div>
+                    
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="bg-brand-primary text-white p-2 rounded-full hover:bg-brand-accent transition-colors"
+                    >
+                      <ShoppingCart className="h-4 w-4" />
+                    </motion.button>
+                  </div>
+                  
+                  <div className="mt-4 text-xs text-gray-500">
+                    {product.stock_quantity > 0 ? (
+                      <span className="text-green-600">In Stock ({product.stock_quantity})</span>
+                    ) : (
+                      <span className="text-red-600">Out of Stock</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <Link href="/shop/all">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-brand-accent text-white px-8 py-4 rounded-full text-lg font-bold flex items-center space-x-2 hover:bg-opacity-90 transition-all shadow-lg mx-auto"
+            >
+              <span>EXPLORE MORE</span>
+              <ArrowRight className="h-5 w-5" />
+            </motion.button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  );
+}

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, Bone } from 'lucide-react';
 import Image from 'next/image';
+import WalletConnect from './WalletConnect';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,6 +14,7 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/tokenomics', label: 'Tokenomics' },
+    { href: '/shop', label: 'Shop' },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -44,13 +46,16 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-brand-accent text-white px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors"
-            >
-              BUY $MBONE
-            </motion.button>
+            <div className="flex items-center space-x-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-brand-accent text-white px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors"
+              >
+                BUY $MBONE
+              </motion.button>
+              <WalletConnect />
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -87,6 +92,9 @@ export default function Navbar() {
                 <button className="w-full bg-brand-accent text-white px-4 py-2 rounded-full font-bold">
                   BUY $MBONE
                 </button>
+                <div className="mt-2">
+                  <WalletConnect />
+                </div>
               </div>
             </div>
           </motion.div>
