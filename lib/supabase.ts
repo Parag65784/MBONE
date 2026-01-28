@@ -179,6 +179,55 @@ export type Database = {
           price?: number
         }
       }
+      customer_complaints: {
+        Row: {
+          id: string
+          name: string
+          email: string
+          phone: string | null
+          subject: string
+          message: string
+          category: string
+          priority: string
+          status: string
+          assigned_to: string | null
+          resolution_notes: string | null
+          created_at: string
+          updated_at: string
+          resolved_at: string | null
+        }
+        Insert: {
+          id?: string
+          name: string
+          email: string
+          phone?: string | null
+          subject: string
+          message: string
+          category?: string
+          priority?: string
+          status?: string
+          assigned_to?: string | null
+          resolution_notes?: string | null
+          created_at?: string
+          updated_at?: string
+          resolved_at?: string | null
+        }
+        Update: {
+          id?: string
+          name?: string
+          email?: string
+          phone?: string | null
+          subject?: string
+          message?: string
+          category?: string
+          priority?: string
+          status?: string
+          assigned_to?: string | null
+          resolution_notes?: string | null
+          updated_at?: string
+          resolved_at?: string | null
+        }
+      }
     }
   }
 }
