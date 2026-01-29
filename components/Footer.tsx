@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Image from 'next/image';
 import { Mail, Twitter, MessageCircle, Users, Instagram, Bone } from 'lucide-react';
 
 export default function Footer() {
@@ -8,6 +9,15 @@ export default function Footer() {
     { icon: MessageCircle, href: '#', label: 'Telegram' },
     { icon: Users, href: '#', label: 'Discord' },
     { icon: Instagram, href: '#', label: 'Instagram' },
+  ];
+
+  const customerServiceLinks = [
+    { href: '/customer-service', label: 'Customer Service' },
+    { href: '/shipping-rates', label: 'Shipping Rates' },
+    { href: '/policy', label: 'Policy' },
+    { href: '/business', label: 'Business' },
+    { href: '/faqs', label: 'FAQs' },
+    { href: '/support-ticket', label: 'Support Ticket' },
   ];
 
   const customerServiceLinks = [
@@ -63,6 +73,7 @@ export default function Footer() {
           {/* Social Links */}
           <div>
             <h3 className="font-bold text-lg mb-4">Community</h3>
+            <div className="grid grid-cols-2 gap-3 mb-6">
             <div className="grid grid-cols-2 gap-3 mb-6">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a

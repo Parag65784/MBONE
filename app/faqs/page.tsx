@@ -1,13 +1,28 @@
+<<<<<<< HEAD
 'use client';
 
+=======
+>>>>>>> 37c0505d4acc997ab65ae181d8faafdd61c03307
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PageTransition from '@/components/PageTransition';
 import { motion } from 'framer-motion';
+<<<<<<< HEAD
 import { HelpCircle, ChevronDown, Search, MessageCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function FAQsClient() {
+=======
+import { CircleHelp as HelpCircle, ChevronDown, Search, MessageCircle } from 'lucide-react';
+import { useState } from 'react';
+
+export const metadata = {
+  title: 'FAQs - MILLIONBONE',
+  description: 'Frequently asked questions about MILLIONBONE, our products, shipping, and more.',
+};
+
+export default function FAQs() {
+>>>>>>> 37c0505d4acc997ab65ae181d8faafdd61c03307
   const [searchTerm, setSearchTerm] = useState('');
   const [openCategory, setOpenCategory] = useState<string | null>('general');
 
@@ -234,9 +249,15 @@ export default function FAQsClient() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-16 bg-gradient-to-r from-brand-primary to-brand-secondary rounded-2xl p-8 text-white text-center"
           >
+<<<<<<< HEAD
             <MessageCircle className="h-12 w-12 text-brand-accent mx-auto mb-4" />
             <h3 className="text-2xl text-brand-primary font-bold mb-4">Still Need Help?</h3>
             <p className="text-brand-secondary text-lg mb-6">
+=======
+            <MessageCircle className="h-12 w-12 mx-auto mb-4" />
+            <h3 className="text-2xl font-bold mb-4">Still Need Help?</h3>
+            <p className="text-lg mb-6">
+>>>>>>> 37c0505d4acc997ab65ae181d8faafdd61c03307
               Can't find what you're looking for? Our customer service team is here to help!
             </p>
             
@@ -244,7 +265,11 @@ export default function FAQsClient() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+<<<<<<< HEAD
                 className="bg-white text-brand-primary px-6 py-3 rounded-full border border-brand-primary font-bold hover:bg-gray-100 transition-colors"
+=======
+                className="bg-white text-brand-primary px-6 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors"
+>>>>>>> 37c0505d4acc997ab65ae181d8faafdd61c03307
               >
                 <a href="/support-ticket">Submit Support Ticket</a>
               </motion.button>
@@ -252,7 +277,11 @@ export default function FAQsClient() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+<<<<<<< HEAD
                 className="border-2 border-brand-primary text-brand-primary px-6 py-3 rounded-full font-bold hover:bg-white hover:text-brand-primary transition-colors"
+=======
+                className="border-2 border-white text-white px-6 py-3 rounded-full font-bold hover:bg-white hover:text-brand-primary transition-colors"
+>>>>>>> 37c0505d4acc997ab65ae181d8faafdd61c03307
               >
                 <a href="mailto:hello@millionbone.com">Send Email</a>
               </motion.button>
