@@ -33,11 +33,8 @@ export default function WalletConnect() {
   }, [])
 
   const menuItems = [
-    { icon: User, label: 'Dashboard', href: '/dashboard' },
-    { icon: User, label: 'Profile', href: '/profile' },
-    { icon: ShoppingCart, label: 'Cart', href: '/cart' },
-    { icon: History, label: 'Order History', href: '/history' },
-    { icon: FileText, label: 'Transactions', href: '/transactions' },
+    { icon: User, label: 'Swap Tokens', href: '/swap' },
+    { icon: FileText, label: 'Support', href: '/support-ticket' },
   ]
 
   if (!isConnected) {
