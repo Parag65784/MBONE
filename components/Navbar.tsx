@@ -14,7 +14,7 @@ export default function Navbar() {
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
     { href: '/tokenomics', label: 'Tokenomics' },
-    { href: '/shop', label: 'Shop' },
+    { href: 'https://millionbone-shop.com', label: 'Shop', external: true },
     { href: '/contact', label: 'Contact' },
   ];
 
@@ -38,22 +38,35 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-brand-secondary hover:text-brand-accent transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </Link>
+              item.external ? (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-brand-secondary hover:text-brand-accent transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="text-brand-secondary hover:text-brand-accent transition-colors duration-200 font-medium"
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
             <div className="flex items-center space-x-4">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand-accent text-white px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors"
-              >
-                BUY $MBONE
-              </motion.button>
+              <Link href="/swap">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-brand-accent text-white px-6 py-2 rounded-full font-bold hover:bg-opacity-90 transition-colors"
+                >
+                  BUY $MBONE
+                </motion.button>
               <WalletConnect />
             </div>
           </div>
@@ -79,19 +92,37 @@ export default function Navbar() {
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 text-brand-secondary hover:text-brand-accent font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                item.external ? (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block px-3 py-2 text-brand-secondary hover:text-brand-accent font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="block px-3 py-2 text-brand-secondary hover:text-brand-accent font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                )
               ))}
               <div className="pt-2">
-                <button className="w-full bg-brand-accent text-white px-4 py-2 rounded-full font-bold">
-                  BUY $MBONE
-                </button>
+                <Link href="/swap">
+                  <button 
+                    className="w-full bg-brand-accent text-white px-4 py-2 rounded-full font-bold"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    BUY $MBONE
+                  </button>
+                </Link>
                 <div className="mt-2">
                   <WalletConnect />
                 </div>
