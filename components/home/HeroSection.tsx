@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function HeroSection() {
   return (
@@ -65,22 +64,24 @@ export default function HeroSection() {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 items-start"
             >
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(254, 127, 45, 0.3)' }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-brand-accent text-white px-8 py-4 rounded-full text-xl font-bold flex items-center space-x-2 shadow-lg"
-              >
-                <span>BUY $MBONE NOW</span>
-                <ArrowRight className="h-5 w-5" />
-              </motion.button>
+              <Link href="/swap">
+                <motion.button
+                  whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(254, 127, 45, 0.3)' }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-brand-accent text-white px-8 py-4 rounded-full text-xl font-bold flex items-center space-x-2 shadow-lg"
+                >
+                  <span>BUY $MBONE NOW</span>
+                  <ArrowRight className="h-5 w-5" />
+                </motion.button>
 
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="border-2 border-brand-primary text-brand-primary px-8 py-4 rounded-full text-xl font-bold hover:bg-brand-primary hover:text-white transition-all"
-              >
-                VIEW TOKENOMICS
-              </motion.button>
+              <Link href="/tokenomics">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-brand-primary text-brand-primary px-8 py-4 rounded-full text-xl font-bold hover:bg-brand-primary hover:text-white transition-all"
+                >
+                  VIEW TOKENOMICS
+                </motion.button>
             </motion.div>
 
             <motion.div
@@ -100,4 +101,7 @@ export default function HeroSection() {
       </div>
     </section>
   );
+}
+
+  )
 }

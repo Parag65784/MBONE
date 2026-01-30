@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownUp, Wallet, AlertCircle, CheckCircle, ExternalLink } from 'lucide-react';
+import { ArrowDownUp, Wallet, CircleAlert as AlertCircle, CircleCheck as CheckCircle, ExternalLink } from 'lucide-react';
 import { useAccount, useBalance } from 'wagmi';
 import { parseEther, formatEther } from 'viem';
 import Navbar from '@/components/Navbar';
