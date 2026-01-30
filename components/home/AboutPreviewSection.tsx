@@ -90,6 +90,6 @@ export default function AboutPreviewSection() {
           </div>
         </div>
       </div>
-      </section>
+    </section>
   );
 }
