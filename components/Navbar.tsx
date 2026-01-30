@@ -67,6 +67,7 @@ export default function Navbar() {
                 >
                   BUY $MBONE
                 </motion.button>
+              </Link>
               <WalletConnect />
             </div>
           </div>
